@@ -10,7 +10,14 @@ const getMessages = () => {
     });
 }
 
-getMessages();
+const renderMessageAsHtml = (message) => {
+    // Hide Input Form
+    const passcodeInput = document.querySelector('#passcodeInput');
+    passcodeInput.style.display = 'none';
+    // Render messageas HTML
+    const messageDiv = document.querySelector('#message');
+    messageDiv.innerHTML = message;
+};
 
 ctr = 0;
 
@@ -24,6 +31,7 @@ const findMessage = (myPass) => {
             console.log(message);
             if (myPass == message.password) {
                 console.log(myPass);
+                renderMessageAsHtml(message.message);
             } else {
                 if (ctr >= 5) {
                     alert('Password wrong too many times');
@@ -43,3 +51,4 @@ document.querySelector("#viewMsg").addEventListener("click", ()=>{
     const password = document.querySelector("#passcode").value;
     findMessage(password);
 });
+
